@@ -59,7 +59,6 @@ namespace fuzzcore_bot
             client.Log += Log; //begin logging for debugging during testing
 
             string token = "[DISCORD TOKEN HERE]"; //must be private
-            //string token = "NTgzNzExOTQyOTAwODQyNTA2.XPAWfw.gRnCuZwHGnnqtpqlAaniEyK04AM"; //test
 
             Services = new ServiceCollection() //for command management and calling
                 .BuildServiceProvider();
