@@ -26,7 +26,7 @@ namespace fuzzcore_bot
                 "By calling the '.fc' before a command lets the bot know you are talking with it. Use '.fc' if you want a response from the bot.");
             helpEmbed.AddField(".fc bespoofer",
                 "This command reveals all the prices and information about the called spoofer. You can also call this command alternatively by using '.fc be', '.fc r6s', '.fc battleye'. ");
-            helpEmbed.AddField(".fc medal @user", "Ever get annoyed of someone? Use this command to tell them to stfu in style :sunglasses: :sunglasses:");
+            helpEmbed.AddField(".fc medal @user", "Ever get annoyed of someone? Use this command to tell them to be quiet in style :sunglasses: :sunglasses:");
             helpEmbed.AddField(".fc info @user", "Grabs and displays generic information about the user.");
             helpEmbed.WithDescription(
                 "Click on the arrows to browse the next help page. Only the message author can call this.");
