@@ -307,7 +307,7 @@ namespace fuzzcore_bot
         }
 
         [Command("mute")]
-        public async Task muteFaggot(SocketGuildUser faggotIn)
+        public async Task mute(SocketGuildUser userIn)
         {
             var user = Context.Message.Author as SocketGuildUser;
 
@@ -316,9 +316,9 @@ namespace fuzzcore_bot
             var denyPerms = new OverwritePermissions(PermValue.Inherit, PermValue.Inherit, PermValue.Inherit, PermValue.Inherit, PermValue.Deny);
             var mutedRole = (IRole)Context.Guild.Roles.FirstOrDefault(x => x.Name.ToLower().Contains("muted")); //real muted role
             //ulong testMutedRole = 552215254709436416; //test muted role
-            if (faggotIn.Roles.Contains(mutedRole))
+            if (userIn.Roles.Contains(mutedRole))
             {
-                await Context.Channel.SendMessageAsync(faggotIn.Username +
+                await Context.Channel.SendMessageAsync(userIn.Username +
                                                  " has already been muted. You can't mute the same user twice.");
                 return;//stop execution
             }
@@ -326,24 +326,24 @@ namespace fuzzcore_bot
             {
                 await Context.Channel.SendMessageAsync(
                     "Unlike MEE6, I actually mute the user. As a result, that takes me a bit longer to mute and unmute. Please be patient and wait for the confirmation message.");
-                await faggotIn.AddRoleAsync(mutedRole);
-                if (faggotIn.Username.Length > 25)
+                await userIn.AddRoleAsync(mutedRole);
+                if (userIn.Username.Length > 25)
                 {
-                    await faggotIn.ModifyAsync(x => x.Nickname = "[MUTED]");
+                    await userIn.ModifyAsync(x => x.Nickname = "[MUTED]");
                 }
                 else
                 {
-                    await faggotIn.ModifyAsync(x => { x.Nickname = faggotIn.Username + "[MUTED]"; });
+                    await userIn.ModifyAsync(x => { x.Nickname = userIn.Username + "[MUTED]"; });
                 }
                 foreach (var channel in Context.Guild.Channels)
                 {
-                    if (faggotIn.GetPermissions(channel).ViewChannel && faggotIn.GetPermissions(channel).SendMessages)
+                    if (userIn.GetPermissions(channel).ViewChannel && userIn.GetPermissions(channel).SendMessages)
                     {
-                        await channel.AddPermissionOverwriteAsync(faggotIn, denyPerms);
+                        await channel.AddPermissionOverwriteAsync(userIn, denyPerms);
                     }
                 }
 
-                await Context.Channel.SendMessageAsync(faggotIn.Username + " has been muted.");
+                await Context.Channel.SendMessageAsync(userIn.Username + " has been muted.");
             }
             else
             {
